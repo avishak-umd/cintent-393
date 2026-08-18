@@ -13,12 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      # CINTENT >> INSERT_CINTENT
-      - uses: JavidDitty/setup-cintent@main
-        with:
-          profiler: "setprofile"
-
       - name: Setup / build docs
         run: |
           sudo chmod -R 777 .
@@ -28,10 +22,8 @@ jobs:
           ./scripts/build_docs.sh -b
           cd website
 
-      # CINTENT >> INSERT_CINTENT
       - name: Upload CIntent Artifacts
         uses: actions/upload-artifact@v4
         if: always()
-        with:
           name: ${{ env.CINTENT_ARTIFACT_NAME }}
           path: ${{ env.CINTENT_LOGS }}
