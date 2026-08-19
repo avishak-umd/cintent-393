@@ -1,11 +1,10 @@
 name: Test deployment
 
-# CINTENT >> MANUAL_TRIGGER
-# on:
-#   pull_request:
-#     # Review gh actions docs if you want to further define triggers, paths, etc
-#     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
-on: [repository_dispatch, workflow_dispatch]
+on:
+  workflow_dispatch: 
+  pull_request:
+    # Review gh actions docs if you want to further define triggers, paths, etc
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
 jobs:
   test-deploy:
@@ -13,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup / build docs
         run: |
           sudo chmod -R 777 .
